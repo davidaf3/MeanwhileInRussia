@@ -14,7 +14,7 @@
 #include "Space.h"
 
 #include <fstream> // Leer ficheros
-#include <sstream> // Leer líneas / String
+#include <sstream> // Leer lï¿½neas / String
 #include <list>
 #include <chrono>
 
@@ -77,7 +77,7 @@ public:
 	list<Projectile*> projectiles;
 	list<Collectable*> collectables;
 	list<HUDText*> texts;
-	Player* player;
+	Player* player = NULL;
 	Background* background;
 	Audio* backgroundMusic;
 	InputController* inputController;

@@ -1,5 +1,13 @@
 #include "Game.h"
 #include "IntroLayer.h"
+#ifdef __EMSCRIPTEN__
+	#include <emscripten.h>
+#endif
+
+void loopCallback(void* arg)
+{
+  static_cast<Game*>(arg)->loopStep();
+}
 
 Game::Game() {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
@@ -13,7 +21,7 @@ Game::Game() {
 	SDL_SetWindowIcon(window, iconSurface);
 	SDL_SetWindowTitle(window, "Meanwhile In Russia");
 
-	// Escalado de imágenes de calidad 
+	// Escalado de imï¿½genes de calidad 
 	// https://wiki.libsdl.org/SDL_HINT_RENDER_SCALE_QUALITY
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 
@@ -32,31 +40,34 @@ Game::Game() {
 
 	loopActive = true; // bucle activo
 	loop();
-
-	Mix_CloseAudio();
 }
 
-
 void Game::loop() {
-	int initTick; // ms de inicio loop
-	int endTick; // ms de fin de loop
-	int differenceTick; // fin - inicio
-	while (loopActive) {
-		initTick = SDL_GetTicks();
-
-		// Controles
-		layer->processControls();
-		// Actualizar elementos
-		layer->update();
-		// Dibujar
-		layer->draw();
-
-		endTick = SDL_GetTicks();
-		differenceTick = endTick - initTick;
-		
-		if (differenceTick < (1000 / frameRate)) {
-			SDL_Delay((1000 / frameRate) - differenceTick);
+	#ifdef __EMSCRIPTEN__
+		emscripten_set_main_loop_arg(&loopCallback, this, 0, 1);
+	#else
+		while (loopActive) {
+			loopStep();
 		}
+		Mix_CloseAudio();
+	#endif
+}
+
+void Game::loopStep() {
+	int initTick = SDL_GetTicks();
+
+	// Controles
+	layer->processControls();
+	// Actualizar elementos
+	layer->update();
+	// Dibujar
+	layer->draw();
+	
+	int endTick = SDL_GetTicks();
+	int differenceTick = endTick - initTick;
+	
+	if (differenceTick < (1000 / frameRate)) {
+		SDL_Delay((1000 / frameRate) - differenceTick);
 	}
 }
 

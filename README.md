@@ -1,5 +1,5 @@
 # <img src="icon.png" width="50"/> Meanwhile In Russia
-Meanwhile In Russia is a 2D side-scroller shooter/platformer made using SDL only. This repo contains the source code for the game. You can download the full game in the [Relesases](https://github.com/davidaf3/MeanwhileInRussia/releases) tab or at its [itch.io page](https://davidaf3.itch.io/meanwhileinrussia).
+Meanwhile In Russia is a 2D side-scroller shooter/platformer made using SDL only. This repo contains the source code for the game. You can play it on the browser (compiled to [WASM](https://webassembly.org) using [emscripten](https://emscripten.org)) at its [itch.io page](https://davidaf3.itch.io/meanwhileinrussia) or download the full game in the [Relesases](https://github.com/davidaf3/MeanwhileInRussia/releases) tab.
 
 ## Screenshots
 <img src="screenshots/screenshot1.PNG" alt="screenshot1" width="800"/>

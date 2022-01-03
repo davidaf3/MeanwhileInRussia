@@ -34,6 +34,7 @@ public:
 	map<string, WAVAudio*> mapWAVs;
 
 	void loop();
+	void loopStep();
 	void changeLayer(Layer* layer);
 	SDL_Window* window; // ventana
 	SDL_Renderer* renderer; // renderizador

@@ -1,0 +1,1 @@
+em++ *.cpp -o mir.html -s USE_SDL=2 -s USE_SDL_MIXER=2 -s SDL2_MIXER_FORMATS=["mp3"] -s USE_SDL_TTF=2 -s USE_SDL_IMAGE=2 -s SDL2_IMAGE_FORMATS='["png"]' -s INITIAL_MEMORY=209715200 -s TOTAL_STACK=20971520 --preload-file res
